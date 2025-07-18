@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Electronic Shop</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      color: #000;
+    }
+    header {
+      background-color: #000;
+      color: gold;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav a {
+      margin-left: 2rem;
+      color: gold;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .hero {
+      background: linear-gradient(90deg, #000, #333);
+      color: white;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+    }
+    .product {
+      border: 1px solid #ccc;
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .product img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 1rem;
+    }
+    .product h3 {
+      color: #000;
+    }
+    .product button {
+      background-color: gold;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .footer {
+      background-color: #000;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+    .footer span {
+      color: gold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div><strong>Electronic Shop</strong></div>
+    <nav>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#carrito">Carrito</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Bienvenidos a Electronic Shop</h1>
+    <p>Compra productos electrónicos en Bayamón, Puerto Rico. Pago por tarjeta.</p>
+  </section>
+
+  <section id="catalogo" class="products">
+    <div class="product">
+      <img src="https://via.placeholder.com/200" alt="Producto 1">
+      <h3>RS5
+      </h3>
+      <p>$100.00</p>
+      <button onclick="agregarAlCarrito('RS5', 45)">Agregar al carrito</button>
+    </div>
+    <div class="product">
+      <img src="https://via.placeholder.com/200" alt="Producto 2">
+      <h3>RS5</h3>
+      <p>$100.00</p>
+      <button onclick="agregarAlCarrito('RS5', 80)">Agregar al carrito</button>
+    </div>
+    <div class="product">
+      <img src="https://via.placeholder.com/200" alt="Producto 3">
+      <h3>RS5</h3>
+      <p>$100.00</p>
+      <button onclick="agregarAlCarrito('RS5', 25)">Agregar al carrito</button>
+    </div>
+  </section>
+
+  <section id="carrito" class="products">
+    <h2>Carrito de Compras</h2>
+    <ul id="lista-carrito"></ul>
+    <p><strong>Total: $<span id="total">0</span></strong></p>
+    <button onclick="pagar()">Pagar con Tarjeta</button>
+  </section>
+
+  <footer class="footer">
+    <p>Ubicación: Bayamón, Puerto Rico | Contacto: <span>787-619-7618</span></p>
+    <p>&copy; 2025 Electronic Shop. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    let carrito = [];
+
+    function agregarAlCarrito(producto, precio) {
+      carrito.push({ producto, precio });
+      actualizarCarrito();
+    }
+
+    function actualizarCarrito() {
+      const lista = document.getElementById('lista-carrito');
+      const totalSpan = document.getElementById('total');
+      lista.innerHTML = '';
+      let total = 0;
+      carrito.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${item.producto} - $${item.precio}`;
+        lista.appendChild(li);
+        total += item.precio;
+      });
+      totalSpan.textContent = total;
+    }
+
+    function pagar() {
+      alert('Redirigiendo a pago por tarjeta o PayPal...');
+      // Aquí se puede integrar PayPal u otra pasarela real
+    }
+  </script>
+</body>
+</html>
